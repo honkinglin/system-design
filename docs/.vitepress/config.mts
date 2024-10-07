@@ -4,6 +4,7 @@ import { defineConfig } from 'vitepress'
 export default defineConfig({
   title: "系统设计面试：内幕指南",
   description: "《System Design Interview: An Insider’s Guide》 中文翻译",
+  base: '/system-design-interview',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
 
