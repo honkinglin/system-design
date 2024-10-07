@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "系统设计面试：内幕指南",
-  description: "《System Design Interview: An Insider’s Guide》 中文版",
+  description: "《System Design Interview: An Insider’s Guide》 中文翻译",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
 

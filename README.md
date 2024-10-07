@@ -1,6 +1,6 @@
 # 系统设计面试：内幕指南
 
->《System Design Interview: An Insider’s Guide》 - 中文版
+>《System Design Interview: An Insider’s Guide》 - 中文翻译
 
 <img src="./docs/public/cover.png" width="400" />
 
