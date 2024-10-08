@@ -8,7 +8,7 @@
 
 - [前言](/forward)
 
-- 第1章：从零扩展到百万用户
+- [第1章：从零扩展到百万用户](/CHAPTER-1-SCALE-FROM-ZERO-TO-MILLIONS-OF-USERS)
 
 - 第2章：粗略估算
 
