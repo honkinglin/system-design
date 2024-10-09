@@ -12,9 +12,9 @@
 
 - [第2章：粗略估算](/CHAPTER-2-BACK-OF-THE-ENVELOPE-ESTIMATION)
 
-- 第3章：系统设计面试的框架
+- [第3章：系统设计面试的框架](/CHAPTER-3-A-FRAMEWORK-FOR-SYSTEM-DESIGN-INTERVIEWS)
 
-- 第4章：设计一个限流器
+- [第4章：设计一个限流器](/CHAPTER-4-DESIGN-A-RATE-LIMITER)
 
 - 第5章：设计一致性哈希
 

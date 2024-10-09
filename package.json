@@ -8,8 +8,8 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["system design interview", "system design"],
+  "author": "Kyrie Lin",
   "license": "ISC",
   "description": "",
   "devDependencies": {
