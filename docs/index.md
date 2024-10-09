@@ -10,7 +10,7 @@
 
 - [第1章：从零扩展到百万用户](/CHAPTER-1-SCALE-FROM-ZERO-TO-MILLIONS-OF-USERS)
 
-- 第2章：粗略估算
+- [第2章：粗略估算](/CHAPTER-2-BACK-OF-THE-ENVELOPE-ESTIMATION)
 
 - 第3章：系统设计面试的框架
 
