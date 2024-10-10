@@ -9,6 +9,8 @@ export default defineConfig({
 
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    outline: 'deep',
+    
     search: {
       provider: 'local'
     },
@@ -27,6 +29,7 @@ export default defineConfig({
           { text: '第1章: 从零扩展到百万用户', link: '/CHAPTER-1-SCALE-FROM-ZERO-TO-MILLIONS-OF-USERS' },
           { text: '第2章: 粗略估算', link: '/CHAPTER-2-BACK-OF-THE-ENVELOPE-ESTIMATION' },
           { text: '第3章: 系统设计面试框架', link: '/CHAPTER-3-A-FRAMEWORK-FOR-SYSTEM-DESIGN-INTERVIEWS' },
+          { text: '第4章: 设计一个限流器', link: '/CHAPTER-4-DESIGN-A-RATE-LIMITER' },
         ]
       }
     ],
