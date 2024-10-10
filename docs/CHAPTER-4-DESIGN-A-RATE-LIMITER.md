@@ -1,20 +1,18 @@
 # 第四章：设计一个限流器  (Design A Rate Limiter)
 
-在网络系统中，限流器（Rate Limiter）用于控制由客户端或服务发出的流量速率。在HTTP协议中，限流器限制客户端在特定时间段内允许发送的请求数量。如果API请求数量超过限流器定义的阈值，超出的请求将被阻止。以下是几个例子：
+在网络系统中，速率限制器用于控制客户端或服务发送的流量速率。在HTTP世界中，速率限制器限制在特定时间段内允许客户端发送的请求数量。如果API请求数量超过速率限制器定义的阈值，所有超出的请求将被阻止。以下是几个示例：
 
-- 一个用户每秒最多可以发布2条帖子。
+- 用户每秒最多可以发表2篇帖子。
 - 同一IP地址每天最多可以创建10个账户。
 - 同一设备每周最多可以领取5次奖励。
 
-在本章中，你将被要求设计一个限流器。在开始设计之前，我们先来看看使用API限流器的好处：
+在本章中，要求你设计一个速率限制器。在开始设计之前，我们先来看看使用API速率限制器的好处：
 
-- **防止资源耗尽，避免拒绝服务攻击（DoS）**：几乎所有的大型科技公司公开的API都实施了某种形式的限流。例如，Twitter限制每3小时内最多发送300条推文。Google Docs API的默认限制是：每位用户每60秒最多发送300次读取请求。限流器通过阻止超出阈值的请求，防止有意或无意的DoS攻击。
+- **防止因拒绝服务（DoS）攻击 [[1]](https://cloud.google.com/solutions/rate-limitingstrategies-techniques) 导致的资源耗尽**。几乎所有大型科技公司发布的API都会实施某种形式的速率限制。例如，Twitter限制每3小时最多发300条推文 [[2]](https://developer.twitter.com/en/docs/basics/rate-limits)。Google Docs API的默认限制为：每用户每60秒最多300次读取请求 [[3]](https://developers.google.com/docs/api/limits)。速率限制器通过阻止超出请求，防止有意或无意的DoS攻击。
 
-- **降低成本**：限制多余的请求意味着需要的服务器数量更少，从而可以将更多资源分配给优先级较高的API。对于使用付费第三方API的公司来说，限流尤其重要。例如，某些外部API（如信用检查、支付处理、健康记录查询等）按调用次数收费，因此限制调用次数对降低成本至关重要。
+- **降低成本**。限制过多的请求意味着需要的服务器更少，并且可以为高优先级API分配更多资源。对于使用付费第三方API的公司，速率限制至关重要。例如，对于以下外部API，您按每次调用付费：信用检查、支付、健康记录查询等。限制调用次数对于降低成本至关重要。
 
-- **防止服务器过载**：为了减少服务器负载，限流器用于过滤掉由机器人或用户不当行为导致的多余请求。
-
-通过这些例子和好处，你可以了解到限流器的重要性。在设计限流器时，我们需要考虑到如何在高效的基础上确保系统的稳定性与安全性。
+- **防止服务器过载**。为了减少服务器负载，速率限制器用于过滤掉由机器人或用户不当行为导致的多余请求。
 
 ## 步骤1 - 理解问题并确定设计范围
 
@@ -78,7 +76,7 @@
 
 ![图4-3](/f4-3.png)
 
-云微服务 [4] 已经变得非常流行，速率限制通常在一个叫做 API 网关的组件中实现。API 网关是一个完全托管的服务，支持速率限制、SSL 终止、身份验证、IP 白名单、服务静态内容等。目前，我们只需要知道 API 网关是一个支持速率限制的中间件。
+云微服务 [[4]](https://www.ibm.com/cloud/learn/microservices) 已经变得非常流行，速率限制通常在一个叫做 API 网关的组件中实现。API 网关是一个完全托管的服务，支持速率限制、SSL 终止、身份验证、IP 白名单、服务静态内容等。目前，我们只需要知道 API 网关是一个支持速率限制的中间件。
 
 在设计速率限制器时，一个重要的问题是：速率限制器应该在服务器端还是在网关中实现？没有绝对的答案。这取决于您公司当前的技术栈、工程资源、优先级、目标等。以下是一些一般性指导原则：
 
@@ -87,7 +85,7 @@
 - 如果您已经使用了微服务架构并在设计中包含了 API 网关以执行身份验证、IP 白名单等，您可以在 API 网关中添加速率限制器。
 - 构建您自己的速率限制服务需要时间。如果您没有足够的工程资源来实现速率限制器，那么商业 API 网关是更好的选择。
 
-## 限流算法  (Algorithms for rate limiting)
+### 限流算法  (Algorithms for rate limiting)
 
 限流可以通过不同的算法来实现，每种算法都有其优点和缺点。尽管本章并不主要讨论算法，但理解它们的高层次概念有助于选择合适的算法或算法组合，以满足我们的使用场景需求。以下是一些常见的限流算法：  
 
@@ -97,9 +95,9 @@
 - 滑动窗口日志（Sliding Window Log）  
 - 滑动窗口计数器（Sliding Window Counter）  
 
-### 令牌桶算法  (Token bucket algorithm)
+#### 令牌桶算法  (Token bucket algorithm)
 
-令牌桶算法是限流中广泛使用的算法之一。它简单易懂，并且被互联网公司广泛应用。Amazon [5] 和 Stripe [6] 都使用该算法来限制其 API 请求。
+令牌桶算法是限流中广泛使用的算法之一。它简单易懂，并且被互联网公司广泛应用。Amazon [[5]](https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-requestthrottling.html) 和 Stripe [[6]](https://stripe.com/blog/rate-limiters) 都使用该算法来限制其 API 请求。
 
 令牌桶算法的工作原理如下：  
 - 令牌桶是一个具有预定义容量的容器。令牌按照预设的速率周期性地放入桶中。当桶满时，不再添加更多的令牌。如图 4-4 所示，令牌桶的容量为4。每秒填充器向桶中加入2个令牌。当桶满后，额外的令牌将会溢出。
@@ -134,7 +132,7 @@
 **缺点**：
 - 算法中的两个参数是桶的大小和令牌的填充速率。然而，正确调整这两个参数可能具有挑战性。
 
-### 漏桶算法 (Leaking bucket algorithm)
+#### 漏桶算法 (Leaking bucket algorithm)
 
 漏桶算法与令牌桶类似，但请求的处理速率是固定的。它通常使用先进先出（FIFO）队列实现。算法的工作原理如下：
 
@@ -150,7 +148,7 @@
 - **桶的大小**：等同于队列的大小。队列用于存放将以固定速率处理的请求。
 - **流出速率**：定义可以以固定速率处理的请求数量，通常以秒为单位。
 
-例如，电子商务公司 Shopify 使用漏桶算法来进行限流[7]。
+例如，电子商务公司 Shopify 使用漏桶算法来进行限流[[7]](https://help.shopify.com/en/api/reference/restadmin-api-rate-limits)。
 
 **优点**：
 - 由于队列大小有限，内存使用效率高。
@@ -160,7 +158,7 @@
 - 突发流量会填满队列，使旧请求堆积，如果未及时处理，最近的请求将会被限流。
 - 算法中有两个参数，调优可能不容易。
 
-### 固定窗口计数器算法 (Fixed window counter algorithm)
+#### 固定窗口计数器算法 (Fixed window counter algorithm)
 
 固定窗口计数器算法的工作原理如下：
 - 算法将时间线划分为固定大小的时间窗口，并为每个窗口分配一个计数器。
@@ -185,10 +183,10 @@
 缺点：
 - 在窗口边缘的流量激增可能导致超过允许配额的请求通过。
 
-### 滑动窗口日志算法 (Sliding window log algorithm)
+#### 滑动窗口日志算法 (Sliding window log algorithm)
 
 如前所述，固定窗口计数算法存在一个主要问题：它在窗口边缘允许更多请求通过。滑动窗口日志算法解决了这一问题，其工作原理如下：
-- 算法会跟踪请求的时间戳。时间戳数据通常存储在缓存中，例如 Redis 的有序集合[8]。
+- 算法会跟踪请求的时间戳。时间戳数据通常存储在缓存中，例如 Redis 的有序集合[[8]](https://engineering.classdojo.com/blog/2015/02/06/rolling-rate-limiter/)。
 - 当一个新请求到达时，移除所有过期的时间戳。过期的时间戳定义为早于当前时间窗口开始时间的记录。
 - 将新请求的时间戳添加到日志中。
 - 如果日志的大小等于或小于允许的请求数量，则接受该请求。否则，拒绝该请求。
@@ -209,7 +207,7 @@
 **缺点：**
 - 该算法消耗大量内存，因为即使请求被拒绝，其时间戳仍可能存储在内存中。
 
-### 滑动窗口计数算法 (Sliding window counter algorithm)
+#### 滑动窗口计数算法 (Sliding window counter algorithm)
 
 滑动窗口计数算法是一种混合方法，它结合了固定窗口计数和滑动窗口日志。该算法可以通过两种不同的方法来实现。本节将解释一种实现方式，并在本节结束时提供另一种实现的参考。图 4-11 说明了该算法的工作原理。
 
@@ -218,22 +216,22 @@
 假设速率限制器允许每分钟最多 7 个请求，在上一个分钟内有 5 个请求，而在当前分钟内有 3 个请求。对于在当前分钟的 30% 位置到达的新请求，滚动窗口中的请求数量通过以下公式计算：
 - 当前窗口中的请求 + 上一个窗口中的请求 * 滚动窗口与上一个窗口的重叠百分比
 
-使用这个公式，我们得到 ( 3 + 5 x 0.7 = 6.5 ) 个请求。根据具体用例，这个数字可以向上或向下舍入。在我们的示例中，向下舍入为 6。由于速率限制器允许每分钟最多 7 个请求，因此当前请求可以通过。然而，在接收到一个额外请求后，限制将会达到。
+使用这个公式，我们得到 `3 + 5 x 0.7 = 6.5` 个请求。根据具体用例，这个数字可以向上或向下舍入。在我们的示例中，向下舍入为 6。由于速率限制器允许每分钟最多 7 个请求，因此当前请求可以通过。然而，在接收到一个额外请求后，限制将会达到。
 
-由于空间限制，这里不讨论其他实现。有兴趣的读者可以参考参考资料 [9]。这个算法并不完美，具有优缺点。
+由于空间限制，这里不讨论其他实现。有兴趣的读者可以参考参考资料 [[9]](https://medium.com/@saisandeepmopuri/system-design-rate-limiter-and-data-modelling9304b0d18250)。这个算法并不完美，具有优缺点。
 
 **优点**
 - 由于速率基于上一个窗口的平均速率，它能够平滑流量峰值。
 - 内存高效。
 
 **缺点** 
-- 仅适用于不那么严格的回溯窗口。它是实际速率的一个近似值，因为它假设上一个窗口中的请求是均匀分布的。然而，这个问题可能没有看起来那么严重。根据 Cloudflare [10] 的实验，在 4 亿个请求中，只有 0.003% 的请求被错误地允许或被限速。
+- 仅适用于不那么严格的回溯窗口。它是实际速率的一个近似值，因为它假设上一个窗口中的请求是均匀分布的。然而，这个问题可能没有看起来那么严重。根据 Cloudflare [[10]](https://blog.cloudflare.com/counting-things-a-lot-of-different-things/) 的实验，在 4 亿个请求中，只有 0.003% 的请求被错误地允许或被限速。
 
-## 高层架构 (High-level architecture)
+### 高层架构 (High-level architecture)
 
 速率限制算法的基本思想很简单。从高层次来看，我们需要一个计数器来跟踪来自同一用户、IP 地址等的请求数量。如果计数器的值大于限制，则请求被拒绝。
 
-我们应该将计数器存储在哪里？使用数据库并不是一个好的主意，因为磁盘访问速度较慢。选择内存缓存是因为它速度快且支持基于时间的过期策略。例如，Redis [11] 是一个实现速率限制的流行选项。它是一个内存存储，提供两个命令：INCR 和 EXPIRE。
+我们应该将计数器存储在哪里？使用数据库并不是一个好的主意，因为磁盘访问速度较慢。选择内存缓存是因为它速度快且支持基于时间的过期策略。例如，Redis [[11]](https://redis.io/) 是一个实现速率限制的流行选项。它是一个内存存储，提供两个命令：INCR 和 EXPIRE。
 
 - **INCR**：将存储的计数器增加 1。
 - **EXPIRE**：为计数器设置超时。如果超时到期，计数器会自动删除。
@@ -247,3 +245,178 @@
 - 如果达到了限制，请求被拒绝。
 - 如果没有达到限制，请求将发送到 API 服务器。与此同时，系统增加计数器并将其保存回 Redis。
 
+## 步骤3 - 深入设计
+
+高层设计在图 4-12 中并没有回答以下问题：
+- 如何创建速率限制规则？规则存储在哪里？
+- 如何处理被速率限制的请求？
+
+在本节中，我们将首先回答有关速率限制规则的问题，然后讨论处理被速率限制请求的策略。最后，我们将讨论在分布式环境中的速率限制、详细设计、性能优化和监控。
+
+### 速率限制规则
+
+Lyft 开源了他们的速率限制组件[[12]](https://github.com/lyft/ratelimit)。我们将深入了解该组件并查看一些速率限制规则的示例：
+
+```yaml
+domain: messaging
+descriptors:
+  - key: message_type
+    value: marketing
+rate_limit:
+  unit: day
+  requests_per_unit: 5
+```
+
+在上述示例中，系统配置为每天最多允许发送 5 条营销消息。以下是另一个示例：
+
+```yaml
+domain: auth
+descriptors:
+  - key: auth_type
+    value: login
+rate_limit:
+  unit: minute
+  requests_per_unit: 5
+```
+
+该规则表明客户端在一分钟内不能登录超过 5 次。规则通常写在配置文件中并保存在磁盘上。
+
+### 超过速率限制
+
+如果请求被速率限制，API 会向客户端返回 HTTP 响应代码 429（请求过多）。根据用例，我们可以将被速率限制的请求放入队列以便稍后处理。例如，如果由于系统过载而限制了一些订单，我们可以将这些订单保留，以便稍后处理。
+
+### 速率限制器头部
+
+客户端如何知道它是否正在被限流？以及客户端如何知道在被限流之前还剩下多少个允许的请求？答案在于 HTTP 响应头。速率限制器会向客户端返回以下 HTTP 头部：
+
+- **X-Ratelimit-Remaining**：在窗口内允许的剩余请求数量。
+- **X-Ratelimit-Limit**：指示客户端在每个时间窗口内可以进行多少次调用。
+- **X-Ratelimit-Retry-After**：在被限流之前，需要等待多少秒才能再次发起请求。
+
+当用户发送了过多请求时，系统会返回 429（请求过多）错误以及 **X-Ratelimit-Retry-After** 头部。
+
+### 详细设计
+
+图 4-13 展示了系统的详细设计。
+
+![图4-13](/f4-13.png)
+
+- 规则存储在磁盘上。工作节点频繁从磁盘中拉取规则，并将其存储在缓存中。
+- 当客户端向服务器发送请求时，请求首先会被发送到速率限制中间件。
+- 速率限制中间件从缓存中加载规则，并从Redis缓存中获取计数器和上次请求的时间戳。根据响应，速率限制器决定：
+  - 如果请求没有被速率限制，则将其转发给API服务器。
+  - 如果请求被速率限制，速率限制器将向客户端返回429请求过多的错误。同时，请求要么被丢弃，要么被转发到队列中。
+
+### 分布式环境中的速率限制器
+
+在单服务器环境中构建一个速率限制器并不困难。然而，将系统扩展以支持多个服务器和并发线程则是另一回事。这里有两个挑战：
+
+- 竞争条件
+- 同步问题
+
+#### 竞争条件
+
+如前所述，速率限制器的高层工作方式如下：
+
+- 从Redis读取计数器值。
+- 检查 (计数器 + 1) 是否超过阈值。
+- 如果没有，将计数器值在Redis中加1。
+
+在高度并发的环境中，可能会发生竞争条件，如图4-14所示。
+
+![图4-14](/f4-14.png)
+
+假设Redis中的计数器值为3。如果两个请求并发地在任何一个请求写回值之前读取计数器值，则每个请求将计数器加一并写回，而不检查其他线程。两个请求（线程）都认为自己拥有正确的计数器值4。然而，正确的计数器值应该是5。
+
+锁是解决竞争条件的最明显的解决方案。然而，使用锁会显著减慢系统速度。为了解决这个问题，通常使用两种策略：Lua脚本 [[13]](https://gist.github.com/ptarjan/e38f45f2dfe601419ca3af937fff574d#request-rate-limiter) 和Redis [[8]](https://engineering.classdojo.com/blog/2015/02/06/rolling-rate-limiter/) 中的有序集合数据结构。对于对这些策略感兴趣的读者，可以参考相关的参考材料 [[8]](https://engineering.classdojo.com/blog/2015/02/06/rolling-rate-limiter/) [[13]](https://gist.github.com/ptarjan/e38f45f2dfe601419ca3af937fff574d#request-rate-limiter)。
+
+#### 同步问题
+
+在分布式环境中，同步是另一个重要的考虑因素。为了支持数百万用户，一个速率限制器服务器可能不足以处理流量。当使用多个速率限制器服务器时，就需要进行同步。例如，在图4-15的左侧，客户端1向速率限制器1发送请求，而客户端2向速率限制器2发送请求。由于Web层是无状态的，客户端可以像图4-15右侧所示，向不同的速率限制器发送请求。如果没有发生同步，速率限制器1将不会包含有关客户端2的任何数据。因此，速率限制器无法正常工作。
+
+![图4-15](/f4-15.png)
+
+一种可能的解决方案是使用粘性会话，允许客户端将流量发送到同一个速率限制器。然而，这种解决方案并不推荐，因为它既不具备可扩展性，也不够灵活。更好的方法是使用像Redis这样的集中式数据存储。该设计如图4-16所示。
+
+![图4-16](/f4-16.png)
+
+### 性能优化
+
+性能优化是系统设计面试中的一个常见话题。我们将讨论两个改进的领域。
+
+首先，多数据中心设置对速率限制器至关重要，因为对于位于数据中心远处的用户，延迟较高。大多数云服务提供商在全球范围内建立了许多边缘服务器位置。例如，截至2020年5月20日，Cloudflare拥有194个地理分布的边缘服务器 [[14]](https://www.cloudflare.com/learning/serverless/glossary/whatis-edge-computing/)。流量会自动路由到最近的边缘服务器，以减少延迟。
+
+![图4-17](/f4-17.png)
+
+其次，使用最终一致性模型来同步数据。如果你不清楚最终一致性模型，请参考《第6章：设计一个键值存储》中的“一致性”部分。
+
+### 监控
+
+在实施速率限制器之后，收集分析数据以检查速率限制器的有效性是很重要的。我们主要希望确保：
+
+- 速率限制算法是有效的。
+- 速率限制规则是有效的。
+
+例如，如果速率限制规则过于严格，许多有效请求会被丢弃。在这种情况下，我们希望稍微放宽规则。另一个例子是，当流量突然增加（例如闪购）时，我们注意到速率限制器变得无效。在这种情况下，我们可以更换算法以支持突发流量。令牌桶算法在这里是一个不错的选择。
+
+## 步骤4 - 总结
+
+在本章中，我们讨论了不同的速率限制算法及其优缺点。讨论的算法包括：
+
+- 令牌桶
+- 漏桶
+- 固定窗口
+- 滑动窗口日志
+- 滑动窗口计数器
+
+接着，我们讨论了系统架构、分布式环境中的速率限制器、性能优化和监控。与任何系统设计面试问题类似，如果时间允许，还有一些额外的讨论点可以提到：
+
+- **硬速率限制 vs 软速率限制**：
+  - 硬速率限制：请求数量不能超过阈值。
+  - 软速率限制：请求可以在短时间内超过阈值。
+  
+- **不同层级的速率限制**。在本章中，我们只讨论了应用层（HTTP：第7层）的速率限制。实际上，可以在其他层应用速率限制。例如，可以使用Iptables [[15]](https://blog.programster.org/rate-limit-requests-withiptables) 基于IP地址进行速率限制（IP：第3层）。
+
+  **注**：开放系统互连模型（OSI模型）有7层 [[16]](https://en.wikipedia.org/wiki/OSI_model#Layer_architecture)：第1层：物理层，第2层：数据链路层，第3层：网络层，第4层：传输层，第5层：会话层，第6层：表示层，第7层：应用层。
+
+- **避免被速率限制**。通过最佳实践设计客户端：
+  - 使用客户端缓存，避免频繁调用API。
+  - 了解限制，不要在短时间内发送过多请求。
+  - 包含捕获异常或错误的代码，以便客户端能够从异常中平稳恢复。
+  - 在重试逻辑中增加足够的退避时间。
+
+恭喜你走到这里！现在可以给自己一个鼓励，干得好！
+
+## 参考资料
+
+[1] Rate-limiting strategies and techniques: https://cloud.google.com/solutions/rate-limitingstrategies-techniques
+
+[2] Twitter rate limits: https://developer.twitter.com/en/docs/basics/rate-limits
+
+[3] Google docs usage limits: https://developers.google.com/docs/api/limits
+
+[4] IBM microservices: https://www.ibm.com/cloud/learn/microservices
+
+[5] Throttle API requests for better throughput: https://docs.aws.amazon.com/apigateway/latest/developerguide/api-gateway-requestthrottling.html
+
+[6] Stripe rate limiters: https://stripe.com/blog/rate-limiters
+
+[7] Shopify REST Admin API rate limits: https://help.shopify.com/en/api/reference/restadmin-api-rate-limits
+
+[8] Better Rate Limiting With Redis Sorted Sets: https://engineering.classdojo.com/blog/2015/02/06/rolling-rate-limiter/
+
+[9] System Design — Rate limiter and Data modelling: https://medium.com/@saisandeepmopuri/system-design-rate-limiter-and-data-modelling9304b0d18250
+
+[10] How we built rate limiting capable of scaling to millions of domains: https://blog.cloudflare.com/counting-things-a-lot-of-different-things/
+
+[11] Redis website: https://redis.io/
+
+[12] Lyft rate limiting: https://github.com/lyft/ratelimit
+
+[13] Scaling your API with rate limiters: https://gist.github.com/ptarjan/e38f45f2dfe601419ca3af937fff574d#request-rate-limiter
+
+[14] What is edge computing: https://www.cloudflare.com/learning/serverless/glossary/whatis-edge-computing/
+
+[15] Rate Limit Requests with Iptables: https://blog.programster.org/rate-limit-requests-withiptables
+
+[16] OSI model: https://en.wikipedia.org/wiki/OSI_model#Layer_architecture
