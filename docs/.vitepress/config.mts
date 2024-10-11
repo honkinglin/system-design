@@ -30,6 +30,8 @@ export default defineConfig({
           { text: '第2章: 粗略估算', link: '/CHAPTER-2-BACK-OF-THE-ENVELOPE-ESTIMATION' },
           { text: '第3章: 系统设计面试框架', link: '/CHAPTER-3-A-FRAMEWORK-FOR-SYSTEM-DESIGN-INTERVIEWS' },
           { text: '第4章: 设计一个限流器', link: '/CHAPTER-4-DESIGN-A-RATE-LIMITER' },
+          { text: '第5章: 设计一致性哈希', link: '/CHAPTER-5-DESIGN-CONSISTENT-HASHING' },
+          { text: '第6章：设计一个键值存储', link: '/CHAPTER-6-DESIGN-A-KEY-VALUE-STORE' },
         ]
       }
     ],

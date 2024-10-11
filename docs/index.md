@@ -16,9 +16,9 @@
 
 - [第4章：设计一个限流器](/CHAPTER-4-DESIGN-A-RATE-LIMITER)
 
-- 第5章：设计一致性哈希
+- [第5章：设计一致性哈希](/CHAPTER-5-DESIGN-CONSISTENT-HASHING)
 
-- 第6章：设计一个键值存储
+- [第6章：设计一个键值存储](/CHAPTER-6-DESIGN-A-KEY-VALUE-STORE)
 
 - 第7章：在分布式系统中设计唯一ID生成器
 
