@@ -22,7 +22,7 @@
 
 - [第7章：设计一个分布式系统中的唯一 ID 生成器](/CHAPTER-7-DESIGN-A-UNIQUE-ID-GENERATOR-IN-DISTRIBUTED-SYSTEMS)
 
-- 第8章：设计一个URL缩短服务
+- [第8章：设计一个 URL 缩短服务](/CHAPTER-8-DESIGN-A-URL-SHORTENER)
 
 - 第9章：设计一个网页爬虫
 
@@ -34,9 +34,9 @@
 
 - 第13章：设计一个搜索自动补全系统
 
-- 第14章：设计YouTube
+- 第14章：设计 YouTube
 
-- 第15章：设计Google Drive
+- 第15章：设计 Google Drive
 
 - 第16章：持续学习
 

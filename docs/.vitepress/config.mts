@@ -33,6 +33,7 @@ export default defineConfig({
           { text: '第5章: 设计一致性哈希', link: '/CHAPTER-5-DESIGN-CONSISTENT-HASHING' },
           { text: '第6章：设计一个键值存储', link: '/CHAPTER-6-DESIGN-A-KEY-VALUE-STORE' },
           { text: '第7章：设计一个分布式系统中的唯一 ID 生成器', link: '/CHAPTER-7-DESIGN-A-UNIQUE-ID-GENERATOR-IN-DISTRIBUTED-SYSTEMS' },
+          { text: '第8章：设计一个 URL 缩短服务', link: '/CHAPTER-8-DESIGN-A-URL-SHORTENER' },
         ]
       }
     ],
