@@ -24,7 +24,7 @@
 
 - [第8章：设计一个 URL 缩短服务](/CHAPTER-8-DESIGN-A-URL-SHORTENER)
 
-- 第9章：设计一个网页爬虫
+- [第9章：设计一个网页爬虫](/CHAPTER-9-DESIGN-A-WEB-CRAWLER)
 
 - 第10章：设计一个通知系统
 
