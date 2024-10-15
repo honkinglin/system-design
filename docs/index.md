@@ -26,7 +26,7 @@
 
 - [第9章：设计一个网页爬虫](/CHAPTER-9-DESIGN-A-WEB-CRAWLER)
 
-- 第10章：设计一个通知系统
+- [第10章：设计一个通知系统](/CHAPTER-10-DESIGN-A-NOTIFICATION-SYSTEM)
 
 - 第11章：设计一个新闻推送系统
 
