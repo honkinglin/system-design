@@ -28,7 +28,7 @@
 
 - [第10章：设计一个通知系统](/CHAPTER-10-DESIGN-A-NOTIFICATION-SYSTEM)
 
-- 第11章：设计一个新闻推送系统
+- [第11章：设计一个新闻订阅系统](/CHAPTER-11-DESIGN-A-NEWS-FEED-SYSTEM)
 
 - 第12章：设计一个聊天系统
 

@@ -36,6 +36,7 @@ export default defineConfig({
           { text: '第8章：设计一个 URL 缩短服务', link: '/CHAPTER-8-DESIGN-A-URL-SHORTENER' },
           { text: '第9章：设计一个网页爬虫', link: '/CHAPTER-9-DESIGN-A-WEB-CRAWLER' },
           { text: '第10章：设计一个通知系统', link: '/CHAPTER-10-DESIGN-A-NOTIFICATION-SYSTEM' },
+          { text: '第11章：设计一个新闻订阅系统', link: '/CHAPTER-11-DESIGN-A-NEWS-FEED-SYSTEM' },
         ]
       }
     ],
