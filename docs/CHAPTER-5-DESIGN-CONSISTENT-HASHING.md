@@ -136,7 +136,7 @@ serverIndex = hash(key) % N
 
 恭喜你读到这里！现在给自己一个赞，做得很好！
 
-## 参考资料
+## 参考文献
 
 [1] Consistent hashing: https://en.wikipedia.org/wiki/Consistent_hashing
 

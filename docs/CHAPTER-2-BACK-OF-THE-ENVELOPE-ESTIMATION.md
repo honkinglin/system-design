@@ -22,7 +22,7 @@
 > - 1 µs= 10^-6 seconds = 1,000 ns
 > - 1 ms = 10^-3 seconds = 1,000 µs = 1,000,000 ns
 
-谷歌的一位软件工程师开发了一款工具来可视化Dean博士的延迟数据。该工具还考虑了时间因素。图2-1展示了截至2020年的可视化延迟数值（图表来源：参考资料[[3]](https://colin-scott.github.io/personal_website/research/interactive_latency.html)）。
+谷歌的一位软件工程师开发了一款工具来可视化Dean博士的延迟数据。该工具还考虑了时间因素。图2-1展示了截至2020年的可视化延迟数值（图表来源：参考文献[[3]](https://colin-scott.github.io/personal_website/research/interactive_latency.html)）。
 
 ![图2-1](/f2-1.png)
 
@@ -83,7 +83,7 @@
 
 恭喜你走到了这一步！现在请给自己一个鼓励。做得很好！
 
-## 参考资料
+## 参考文献
 
 [1] J. Dean.Google Pro Tip: Use Back-Of-The-Envelope-Calculations To Choose The Best Design: http://highscalability.com/blog/2011/1/26/google-pro-tip-use-back-of-the-envelopecalculations-to-choo.html
 

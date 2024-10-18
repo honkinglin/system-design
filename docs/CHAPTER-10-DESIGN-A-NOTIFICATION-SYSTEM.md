@@ -6,7 +6,7 @@
 
 ![图10-1](/f10-1.png)
 
-## 步骤 1 - 理解问题并确定设计范围
+## 第 1 步 - 理解问题并确定设计范围
 构建一个每天发送数百万条通知的可扩展系统并非易事。这需要对通知生态系统有深入的理解。这个面试问题有意设置得开放且模糊，需要你主动提问以澄清需求。
 
 **候选人**：系统支持哪种类型的通知？  
@@ -27,7 +27,7 @@
 **候选人**：每天发送多少条通知？  
 **面试官**：每天发送 1000 万条移动推送通知、100 万条短信和 500 万封电子邮件。
 
-## 步骤 2 - 提出高层设计并达成共识
+## 第 2 步 - 提出高层设计并达成共识
 本节展示了支持多种通知类型的高层设计：iOS 推送通知、Android 推送通知、短信消息和电子邮件。其结构如下：
 
 - 不同类型的通知
@@ -179,7 +179,7 @@ POST https://api.example.com/v/sms/send
 5. 工作节点将通知发送到第三方服务。
 6. 第三方服务将通知发送到用户设备。
 
-## 步骤 3 - 设计深入探讨
+## 第 3 步 - 设计深入探讨
 
 在高层设计中，我们讨论了不同类型的通知、联系信息的收集流程以及通知发送/接收的流程。我们将在以下几个方面进行深入剖析：
 - 可靠性
@@ -197,7 +197,7 @@ POST https://api.example.com/v/sms/send
 #### 接收者会收到通知恰好一次吗？  
 
 简短的回答是不会。虽然大多数情况下通知是恰好一次送达，但分布式的特性可能导致重复通知。为了减少重复发生的情况，我们引入了去重机制，并仔细处理每个失败案例。以下是一个简单的去重逻辑：  
-当通知事件首次到达时，我们通过检查事件ID来判断是否之前已见过。如果之前见过，则将其丢弃。否则，我们将发送该通知。有关为什么我们无法实现恰好一次传递的原因，感兴趣的读者可以参考参考资料 [[5]](https://bravenewgeek.com/you-cannot-haveexactly-once-delivery/)。
+当通知事件首次到达时，我们通过检查事件ID来判断是否之前已见过。如果之前见过，则将其丢弃。否则，我们将发送该通知。有关为什么我们无法实现恰好一次传递的原因，感兴趣的读者可以参考参考文献 [[5]](https://bravenewgeek.com/you-cannot-haveexactly-once-delivery/)。
 
 ### 附加组件和考虑因素  
 我们已经讨论了如何收集用户联系信息、发送和接收通知。一个通知系统远不止于此。这里我们讨论额外的组件，包括模板重用、通知设置、事件跟踪、系统监控、限流等。
@@ -228,7 +228,7 @@ POST https://api.example.com/v/sms/send
 当第三方服务未能成功发送通知时，该通知将被添加到消息队列中进行重试。如果问题持续存在，则会向开发人员发送警报。
 
 #### 推送通知的安全性  (Security in push notifications)
-对于iOS或Android应用，`appKey`和`appSecret`用于保护推送通知API的安全 [[6]](https://cloud.ibm.com/docs/services/mobilepush?topic=mobile-pushnotification-security-in-push-notifications)。只有经过身份验证或验证的客户端才能使用我们的API发送推送通知。感兴趣的用户可以参考参考资料 [[6]](https://cloud.ibm.com/docs/services/mobilepush?topic=mobile-pushnotification-security-in-push-notifications)。
+对于iOS或Android应用，`appKey`和`appSecret`用于保护推送通知API的安全 [[6]](https://cloud.ibm.com/docs/services/mobilepush?topic=mobile-pushnotification-security-in-push-notifications)。只有经过身份验证或验证的客户端才能使用我们的API发送推送通知。感兴趣的用户可以参考参考文献 [[6]](https://cloud.ibm.com/docs/services/mobilepush?topic=mobile-pushnotification-security-in-push-notifications)。
 
 #### 监控排队通知  (Monitor queued notifications)
 一个关键的监控指标是排队通知的总数。如果数量过多，说明通知事件处理速度不够快。为了避免通知延迟，需要增加更多的工作线程。图10-12（感谢 [[7]](https://bit.ly/2sotIa6)）展示了排队消息待处理的示例。
@@ -251,7 +251,7 @@ POST https://api.example.com/v/sms/send
 - 此外，通知模板提供了一种一致且高效的通知创建过程。  
 - 最后，增加了监控和跟踪系统，以进行系统健康检查和未来改进。
 
-## 步骤 4 - 总结 
+## 第 4 步 - 总结 
 
 通知是不可或缺的，因为它们让我们了解重要信息。这可以是关于您最喜欢的Netflix电影的推送通知、有关新产品折扣的电子邮件，或是关于您在线购物付款确认的消息。
 
@@ -266,7 +266,7 @@ POST https://api.example.com/v/sms/send
 
 恭喜你走到这一步！现在给自己一个鼓励。做得好！
 
-## 参考资料
+## 参考文献
 
 [1] Twilio SMS: https://www.twilio.com/sms
 

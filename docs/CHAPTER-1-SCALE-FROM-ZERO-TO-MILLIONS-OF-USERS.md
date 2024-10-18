@@ -109,7 +109,7 @@ GET /users/12 – Retrieve user object for id = 12
   
 - 如果主数据库离线，则将提升一个从数据库成为新的主数据库。所有数据库操作将暂时在新的主数据库上执行。将立即用一个新的从数据库替换旧的，从而实现数据复制。
 
-在生产系统中，提升新的主数据库更为复杂，因为从数据库中的数据可能不是最新的。缺失的数据需要通过运行数据恢复脚本来更新。虽然一些其他的复制方法，如多主复制和循环复制，可以提供帮助，但这些设置更加复杂，讨论超出了本书的范围。有兴趣的读者应参考所列的参考资料[[4]](https://en.wikipedia.org/wiki/Multi-master_replication)[[5]](https://dev.mysql.com/doc/refman/5.7/en/mysql-cluster-replication-multi-master.html)。
+在生产系统中，提升新的主数据库更为复杂，因为从数据库中的数据可能不是最新的。缺失的数据需要通过运行数据恢复脚本来更新。虽然一些其他的复制方法，如多主复制和循环复制，可以提供帮助，但这些设置更加复杂，讨论超出了本书的范围。有兴趣的读者应参考所列的参考文献[[4]](https://en.wikipedia.org/wiki/Multi-master_replication)[[5]](https://dev.mysql.com/doc/refman/5.7/en/mysql-cluster-replication-multi-master.html)。
 
 图1-6展示了在添加负载均衡器和数据库复制后系统的设计。
 
@@ -158,7 +158,7 @@ cache.get('myKey')
 ## 内容分发网络 - CDN  (Content delivery network - CDN) 
 CDN 是一个地理分散的服务器网络，用于交付静态内容。CDN 服务器缓存静态内容，如图像、视频、CSS、JavaScript 文件等。  
 
-动态内容缓存是一个相对较新的概念，超出了本书的范围。它使基于请求路径、查询字符串、Cookie 和请求头的 HTML 页面能够被缓存。有关更多信息，请参考参考资料[[9]](https://aws.amazon.com/cloudfront/dynamic-content/)中提到的文章。本书主要集中在如何使用 CDN 缓存静态内容。  
+动态内容缓存是一个相对较新的概念，超出了本书的范围。它使基于请求路径、查询字符串、Cookie 和请求头的 HTML 页面能够被缓存。有关更多信息，请参考参考文献[[9]](https://aws.amazon.com/cloudfront/dynamic-content/)中提到的文章。本书主要集中在如何使用 CDN 缓存静态内容。  
 
 CDN 的高层工作原理如下：当用户访问网站时，离用户最近的 CDN 服务器将提供静态内容。直观地说，用户离 CDN 服务器越远，网站加载的速度就越慢。例如，如果 CDN 服务器位于旧金山，那么洛杉矶的用户获取内容的速度会比欧洲的用户快。图 1-9 是一个很好的例子，展示了 CDN 如何改善加载时间。
 
@@ -340,7 +340,7 @@ CDN 的高层工作原理如下：当用户访问网站时，离用户最近的 
 
 恭喜您走到这里！现在给自己一个鼓励，干得好！
 
-## 参考资料 
+## 参考文献 
 
 [1] Hypertext Transfer Protocol: https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol
 
