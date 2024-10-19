@@ -30,7 +30,7 @@
 
 - [第11章：设计一个新闻订阅系统](/CHAPTER-11-DESIGN-A-NEWS-FEED-SYSTEM)
 
-- 第12章：设计一个聊天系统
+- [第12章：设计一个聊天系统](/CHAPTER-12-DESIGN-A-CHAT-SYSTEM)
 
 - 第13章：设计一个搜索自动补全系统
 
