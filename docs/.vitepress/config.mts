@@ -39,6 +39,7 @@ export default defineConfig({
           { text: '第十一章：设计一个新闻订阅系统', link: '/CHAPTER-11-DESIGN-A-NEWS-FEED-SYSTEM' },
           { text: '第十二章：设计一个聊天系统', link: '/CHAPTER-12-DESIGN-A-CHAT-SYSTEM' },
           { text: '第十三章：设计搜索自动完成系统', link: '/CHAPTER-13-DESIGN-A-SEARCH-AUTOCOMPLETE-SYSTEM' },
+          { text: '第十四章：设计 YouTube', link: '/CHAPTER-14-DESIGN-YOUTUBE' },
         ]
       }
     ],
