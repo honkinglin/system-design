@@ -40,6 +40,7 @@ export default defineConfig({
           { text: '第十二章：设计一个聊天系统', link: '/CHAPTER-12-DESIGN-A-CHAT-SYSTEM' },
           { text: '第十三章：设计搜索自动完成系统', link: '/CHAPTER-13-DESIGN-A-SEARCH-AUTOCOMPLETE-SYSTEM' },
           { text: '第十四章：设计 YouTube', link: '/CHAPTER-14-DESIGN-YOUTUBE' },
+          { text: '第十五章：设计 Google Drive', link: '/CHAPTER-15-DESIGN-GOOGLE-DRIVE' },
         ]
       }
     ],
