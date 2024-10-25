@@ -8,13 +8,13 @@
 
 尽管在处理分布式系统时，数据量可能会变得非常庞大，但所有计算归根结底都是基础知识。为了获得正确的计算结果，了解以二的幂为单位的数据量至关重要。一个字节是由8位组成的序列，一个ASCII字符占用一个字节的内存（8位）。下表解释了数据量单位（表2-1）。
 
-![表2-1](/t2-1.png)
+![表2-1](/insider/t2-1.png)
 
 ## 每个程序员都应该了解的延迟数值
 
 谷歌的Dean博士在2010年揭示了典型计算机操作的时间长度[[1]](http://highscalability.com/blog/2011/1/26/google-pro-tip-use-back-of-the-envelopecalculations-to-choo.html)。尽管随着计算机变得更快、更强大，有些数值已经过时，但这些数据仍然能够让我们了解不同计算机操作的快慢差异。
 
-![表2-1](/t2-1.png)
+![表2-1](/insider/t2-1.png)
 
 > Notes
 > - ns = nanosecond, µs = microsecond, ms = millisecond
@@ -24,7 +24,7 @@
 
 谷歌的一位软件工程师开发了一款工具来可视化Dean博士的延迟数据。该工具还考虑了时间因素。图2-1展示了截至2020年的可视化延迟数值（图表来源：参考文献[[3]](https://colin-scott.github.io/personal_website/research/interactive_latency.html)）。
 
-![图2-1](/f2-1.png)
+![图2-1](/insider/f2-1.png)
 
 通过分析图2-1中的数据，我们得出以下结论：
 
