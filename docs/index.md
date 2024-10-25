@@ -6,7 +6,7 @@
 
 ## 目录
 
-- [前言](/forward)
+- [前言](/FORWARD)
 
 - [第一章：从零扩展到百万用户](/CHAPTER-1-SCALE-FROM-ZERO-TO-MILLIONS-OF-USERS)
 
@@ -38,6 +38,6 @@
 
 - [第十五章：设计 Google Drive](/CHAPTER-15-DESIGN-GOOGLE-DRIVE)
 
-- 第十六章：持续学习
+- [第十六章：持续学习](/CHAPTER-16-THE-LEARNING-CONTINUES)
 
-- 后记
+- [后记](/AFTERWORD)

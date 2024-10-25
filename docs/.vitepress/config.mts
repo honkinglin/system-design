@@ -25,7 +25,7 @@ export default defineConfig({
         text: '系统设计面试：内幕指南 - 目录',
         items: [
           { text: '介绍', link: '/' },
-          { text: '前言', link: '/forward' },
+          { text: '前言', link: '/FORWARD' },
           { text: '第一章：从零扩展到百万用户', link: '/CHAPTER-1-SCALE-FROM-ZERO-TO-MILLIONS-OF-USERS' },
           { text: '第二章：粗略估算', link: '/CHAPTER-2-BACK-OF-THE-ENVELOPE-ESTIMATION' },
           { text: '第三章：系统设计面试框架', link: '/CHAPTER-3-A-FRAMEWORK-FOR-SYSTEM-DESIGN-INTERVIEWS' },
@@ -41,6 +41,8 @@ export default defineConfig({
           { text: '第十三章：设计搜索自动完成系统', link: '/CHAPTER-13-DESIGN-A-SEARCH-AUTOCOMPLETE-SYSTEM' },
           { text: '第十四章：设计 YouTube', link: '/CHAPTER-14-DESIGN-YOUTUBE' },
           { text: '第十五章：设计 Google Drive', link: '/CHAPTER-15-DESIGN-GOOGLE-DRIVE' },
+          { text: '第十六章：学习永无止境', link: '/CHAPTER-16-THE-LEARNING-CONTINUES' },
+          { text: '后记', link: '/AFTERWORD' },
         ]
       }
     ],

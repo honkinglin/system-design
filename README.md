@@ -38,6 +38,6 @@
 
 - [第十五章：设计 Google Drive](/CHAPTER-15-DESIGN-GOOGLE-DRIVE)
 
-- 第十六章：持续学习
+- [第十六章：持续学习](/CHAPTER-16-THE-LEARNING-CONTINUES)
 
-- 后记
+- [后记](/AFTERWORD)
