@@ -34,7 +34,6 @@ export default defineConfig({
         {
           text: '系统设计面试：内幕指南',
           items: [
-            { text: '介绍', link: '/system-design-interview' },
             { text: '前言', link: '/system-design-interview/FORWARD' },
             { text: '第一章：从零扩展到百万用户', link: '/system-design-interview/CHAPTER-1-SCALE-FROM-ZERO-TO-MILLIONS-OF-USERS' },
             { text: '第二章：粗略估算', link: '/system-design-interview/CHAPTER-2-BACK-OF-THE-ENVELOPE-ESTIMATION' },

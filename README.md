@@ -1,6 +1,6 @@
 # System Design
 
-> Master the skills of designing systems at scale and get ready for system design interviews.
+Master the skills of designing systems at scale and get ready for system design interviews.
 
 ## 系统设计面试：内幕指南
 
