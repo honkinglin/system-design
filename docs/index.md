@@ -7,7 +7,7 @@ hero:
   actions:
     - theme: brand
       text: Get Started
-      link: /system-design-interview/
+      link: /insider/
     - theme: alt
       text: View on GitHub
       link: https://github.com/honkinglin/system-design
@@ -15,7 +15,7 @@ hero:
 features:
   - title: 📖《系统设计面试：内幕指南》
     details: 原书：《System Design Interview - An Insider’s Guide》
-    link: /system-design-interview/
+    link: /insider/
 
   - title: 📖《深入理解系统设计面试》
     details: 原书：《Grokking-the-system-design-interview》
