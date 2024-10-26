@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, onUnmounted } from "vue";
 
-const observer = new MutationObserver((mutationsList) => {
+const observer = new window.MutationObserver((mutationsList) => {
   for (const mutation of mutationsList) {
     if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
       const isDark = document.documentElement.classList.contains("dark");
@@ -38,7 +38,7 @@ onMounted(() => {
 
 onUnmounted(() => {
   observer.disconnect();
-})
+});
 </script>
 
 <template>
