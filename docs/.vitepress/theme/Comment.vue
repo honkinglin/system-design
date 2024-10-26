@@ -1,8 +1,5 @@
 <script setup>
-import DefaultTheme from "vitepress/theme";
 import { onMounted } from "vue";
-
-const { Layout } = DefaultTheme;
 
 onMounted(() => {
   const script = document.createElement("script");
@@ -17,9 +14,5 @@ onMounted(() => {
 </script>
 
 <template>
-  <Layout>
-    <template #doc-after>
-      <div id="comments"></div>
-    </template>
-  </Layout>
+  <div id="comments"></div>
 </template>
