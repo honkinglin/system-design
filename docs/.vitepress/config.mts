@@ -7,6 +7,11 @@ export default defineConfig({
   base: '/system-design',
   lastUpdated: true,
 
+  head: [
+    ['link', { rel: 'icon', href: '/favicon.ico' }],
+    ['link', { rel: 'icon', href: '/system-design/favicon.ico' }],
+  ],
+
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     outline: 'deep',
@@ -65,27 +70,27 @@ export default defineConfig({
             { text: "系统设计面试：循序渐进指南", link: "/grokking/chapter-1" },
           ]
         },
-        // {
-        //   text: '系统设计问题',
-        //   items: [
-        //     { "text": "设计 URL 缩短服务，例如 TinyURL", "link": "/grokking/chapter-2" },
-        //     { "text": "设计 Pastebin", "link": "/grokking/chapter-3" },
-        //     { "text": "设计 Instagram", "link": "/grokking/chapter-4" },
-        //     { "text": "设计 Dropbox", "link": "/grokking/chapter-5" },
-        //     { "text": "设计 Facebook Messenger", "link": "/grokking/chapter-6" },
-        //     { "text": "设计 Twitter", "link": "/grokking/chapter-7" },
-        //     { "text": "设计 YouTube 或 Netflix", "link": "/grokking/chapter-8" },
-        //     { "text": "设计自动完成建议", "link": "/grokking/chapter-9" },
-        //     { "text": "设计 API 速率限制器", "link": "/grokking/chapter-10" },
-        //     { "text": "设计 Twitter 搜索", "link": "/grokking/chapter-11" },
-        //     { "text": "设计网络爬虫", "link": "/grokking/chapter-12" },
-        //     { "text": "设计 Facebook 的新闻订阅", "link": "/grokking/chapter-13" },
-        //     { "text": "设计 Yelp 或附近的朋友", "link": "/grokking/chapter-14" },
-        //     { "text": "设计 Uber 后端", "link": "/grokking/chapter-15" },
-        //     { "text": "设计 Ticketmaster", "link": "/grokking/chapter-16" },
-        //     { "text": "其他资源", "link": "/grokking/chapter-17" },
-        //   ]
-        // },
+        {
+          text: '系统设计问题',
+          items: [
+            { "text": "设计 URL 缩短服务，例如 TinyURL", "link": "/grokking/chapter-2" },
+            // { "text": "设计 Pastebin", "link": "/grokking/chapter-3" },
+            // { "text": "设计 Instagram", "link": "/grokking/chapter-4" },
+            // { "text": "设计 Dropbox", "link": "/grokking/chapter-5" },
+            // { "text": "设计 Facebook Messenger", "link": "/grokking/chapter-6" },
+            // { "text": "设计 Twitter", "link": "/grokking/chapter-7" },
+            // { "text": "设计 YouTube 或 Netflix", "link": "/grokking/chapter-8" },
+            // { "text": "设计自动完成建议", "link": "/grokking/chapter-9" },
+            // { "text": "设计 API 速率限制器", "link": "/grokking/chapter-10" },
+            // { "text": "设计 Twitter 搜索", "link": "/grokking/chapter-11" },
+            // { "text": "设计网络爬虫", "link": "/grokking/chapter-12" },
+            // { "text": "设计 Facebook 的新闻订阅", "link": "/grokking/chapter-13" },
+            // { "text": "设计 Yelp 或附近的朋友", "link": "/grokking/chapter-14" },
+            // { "text": "设计 Uber 后端", "link": "/grokking/chapter-15" },
+            // { "text": "设计 Ticketmaster", "link": "/grokking/chapter-16" },
+            // { "text": "其他资源", "link": "/grokking/chapter-17" },
+          ]
+        },
         // {
         //   text: '系统设计基础',
         //   items: [
