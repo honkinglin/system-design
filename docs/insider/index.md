@@ -1,8 +1,8 @@
 # 系统设计面试：内幕指南
 
-原书：《System Design Interview: An Insider’s Guide》
+> 原书：System Design Interview: An Insider’s Guide
 
-作者：Alex Xu
+> 作者：Alex Xu
 
 ## 目录
 

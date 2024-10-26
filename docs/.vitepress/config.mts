@@ -3,7 +3,7 @@ import { defineConfig } from 'vitepress'
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "System Design",
-  description: "《System Design Interview: An Insider’s Guide》 中文翻译",
+  description: "System Design 面试指南",
   base: '/system-design',
   lastUpdated: true,
 
@@ -13,9 +13,10 @@ export default defineConfig({
 
     nav: [
       {
-        text: '📚 系统设计书籍',
+        text: 'System Design 书籍',
         items: [
-          { text: '《系统设计面试：内幕指南》', link: '/insider' },
+          { text: 'System Design Interview: An Insider’s Guide', link: '/insider' },
+          { text: 'Grokking-the-system-design-interview', link: '/grokking' },
         ]
       }
     ],
@@ -33,6 +34,7 @@ export default defineConfig({
       '/insider/': [
         {
           text: '系统设计面试：内幕指南',
+          link: '/insider/index',
           items: [
             { text: '前言', link: '/insider/FORWARD' },
             { text: '第一章：从零扩展到百万用户', link: '/insider/CHAPTER-1-SCALE-FROM-ZERO-TO-MILLIONS-OF-USERS' },
@@ -54,7 +56,53 @@ export default defineConfig({
             { text: '后记', link: '/insider/AFTERWORD' },
           ]
         }
-      ]
+      ],
+      '/grokking/': [
+        {
+          text: '深入理解系统设计面试',
+          link: '/grokking/index',
+          items: [
+            { text: "系统设计面试：循序渐进指南", link: "/grokking/chapter-1" },
+          ]
+        },
+        // {
+        //   text: '系统设计问题',
+        //   items: [
+        //     { "text": "设计 URL 缩短服务，例如 TinyURL", "link": "/grokking/chapter-2" },
+        //     { "text": "设计 Pastebin", "link": "/grokking/chapter-3" },
+        //     { "text": "设计 Instagram", "link": "/grokking/chapter-4" },
+        //     { "text": "设计 Dropbox", "link": "/grokking/chapter-5" },
+        //     { "text": "设计 Facebook Messenger", "link": "/grokking/chapter-6" },
+        //     { "text": "设计 Twitter", "link": "/grokking/chapter-7" },
+        //     { "text": "设计 YouTube 或 Netflix", "link": "/grokking/chapter-8" },
+        //     { "text": "设计自动完成建议", "link": "/grokking/chapter-9" },
+        //     { "text": "设计 API 速率限制器", "link": "/grokking/chapter-10" },
+        //     { "text": "设计 Twitter 搜索", "link": "/grokking/chapter-11" },
+        //     { "text": "设计网络爬虫", "link": "/grokking/chapter-12" },
+        //     { "text": "设计 Facebook 的新闻订阅", "link": "/grokking/chapter-13" },
+        //     { "text": "设计 Yelp 或附近的朋友", "link": "/grokking/chapter-14" },
+        //     { "text": "设计 Uber 后端", "link": "/grokking/chapter-15" },
+        //     { "text": "设计 Ticketmaster", "link": "/grokking/chapter-16" },
+        //     { "text": "其他资源", "link": "/grokking/chapter-17" },
+        //   ]
+        // },
+        // {
+        //   text: '系统设计基础',
+        //   items: [
+        //     { "text": "分布式系统的关键特性", "link": "/grokking/chapter-18" },
+        //     { "text": "负载均衡", "link": "/grokking/chapter-19" },
+        //     { "text": "缓存", "link": "/grokking/chapter-20" },
+        //     { "text": "分片或数据分区", "link": "/grokking/chapter-21" },
+        //     { "text": "索引", "link": "/grokking/chapter-22" },
+        //     { "text": "代理", "link": "/grokking/chapter-23" },
+        //     { "text": "冗余与复制", "link": "/grokking/chapter-24" },
+        //     { "text": "SQL 与 NoSQL", "link": "/grokking/chapter-25" },
+        //     { "text": "CAP 定理", "link": "/grokking/chapter-26" },
+        //     { "text": "一致性哈希", "link": "/grokking/chapter-27" },
+        //     { "text": "长轮询 vs WebSockets vs 服务器发送事件", "link": "/grokking/chapter-28" }
+        //   ]
+        // }
+      ]    
     },
 
     socialLinks: [
