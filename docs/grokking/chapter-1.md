@@ -49,7 +49,7 @@
 - 用户关注：UserID1、UserID2
 - 收藏推文：UserID、TweetID、时间戳
 
-我们应该使用什么样的数据库系统？像 Cassandra 这样的 NoSQL 是否最符合我们的需求，还是应该使用类似 MySQL 的解决方案？我们应该使用什么样的块存储来存储照片和视频？
+我们应该使用什么样的数据库系统？像 [Cassandra](https://en.wikipedia.org/wiki/Apache_Cassandra) 这样的 NoSQL 是否最符合我们的需求，还是应该使用类似 MySQL 的解决方案？我们应该使用什么样的块存储来存储照片和视频？
 
 ## 第 5 步：高层设计 (High-level design)
 

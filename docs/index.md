@@ -3,7 +3,7 @@ layout: home
 
 hero:
   name: System Design
-  tagline: 学习 System Design 技巧，为 System Design 面试做好准备。
+  tagline: 学习如何设计大型系统，为 System Design 面试做准备
   image: /system-design.png
   actions:
     - theme: brand

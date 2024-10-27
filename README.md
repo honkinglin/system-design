@@ -1,10 +1,10 @@
 # System Design
 
-Master the skills of designing systems at scale and get ready for system design interviews.
+学习如何设计大型系统，为 System Design 面试做准备
 
 ## 系统设计面试：内幕指南
 
-原书：《System Design Interview: An Insider’s Guide》
+原书：System Design Interview: An Insider’s Guide
 
 作者：Alex Xu
 
