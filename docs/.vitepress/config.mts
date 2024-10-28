@@ -74,7 +74,7 @@ export default defineConfig({
           text: '系统设计问题',
           items: [
             { "text": "设计 URL 缩短服务，例如 TinyURL", "link": "/grokking/chapter-2" },
-            // { "text": "设计 Pastebin", "link": "/grokking/chapter-3" },
+            { "text": "设计 Pastebin", "link": "/grokking/chapter-3" },
             // { "text": "设计 Instagram", "link": "/grokking/chapter-4" },
             // { "text": "设计 Dropbox", "link": "/grokking/chapter-5" },
             // { "text": "设计 Facebook Messenger", "link": "/grokking/chapter-6" },
