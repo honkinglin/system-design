@@ -47,7 +47,7 @@ Instagram是一种社交网络服务，用户可以上传并与他人分享自�
 
 ## 5. 高层系统设计
 
-从高层次来看，我们需要支持两个场景：一个用于照片上传，另一个用于照片查看和搜索。服务需要一些 [对象存储服务器](/https://en.wikipedia.org/wiki/Object_storage) 来存储照片，还需要一些数据库服务器来存储照片的元数据信息。
+从高层次来看，我们需要支持两个场景：一个用于照片上传，另一个用于照片查看和搜索。服务需要一些 [对象存储服务器](https://en.wikipedia.org/wiki/Object_storage) 来存储照片，还需要一些数据库服务器来存储照片的元数据信息。
 
 ![图4-1](/grokking/f4-1.png)
 
@@ -61,10 +61,10 @@ Instagram是一种社交网络服务，用户可以上传并与他人分享自�
 
 一种简单的存储方案是使用支持联接操作的关系型数据库（如MySQL），但关系型数据库在扩展时面临诸多挑战。关于详细对比，请参见SQL与NoSQL的区别。
 
-- **照片存储**：可以使用分布式文件存储系统，如 [HDFS](/https://en.wikipedia.org/wiki/Apache_Hadoop) 或 [S3](/https://en.wikipedia.org/wiki/Amazon_S3)。
+- **照片存储**：可以使用分布式文件存储系统，如 [HDFS](https://en.wikipedia.org/wiki/Apache_Hadoop) 或 [S3](https://en.wikipedia.org/wiki/Amazon_S3)。
 - **元数据存储**：可以使用分布式键值存储系统来实现NoSQL的优势。与照片相关的所有元数据可以存放在一个表中，其中“键”为`PhotoID`，“值”为包含`PhotoLocation`、`UserLocation`、`CreationTimestamp`等信息的对象。
   
-我们还需要存储用户与照片的关系，以便知道谁拥有哪些照片；此外，还需存储用户的关注列表。对于这两个表，可以使用宽列数据存储，如 [Cassandra](/https://en.wikipedia.org/wiki/Apache_Cassandra)。
+我们还需要存储用户与照片的关系，以便知道谁拥有哪些照片；此外，还需存储用户的关注列表。对于这两个表，可以使用宽列数据存储，如 [Cassandra](https://en.wikipedia.org/wiki/Apache_Cassandra)。
 
 - **UserPhoto表**：键为`UserID`，值为该用户拥有的`PhotoID`列表，分别存储在不同列中。
 - **UserFollow表**：采用类似的模式存储用户关注的列表。
@@ -170,7 +170,7 @@ auto-increment-offset = 2
   - a. 新数据可能在客户端发出拉取请求之前不会显示给用户
   - b. 大多数情况下，如果没有新数据，拉取请求将导致空响应。
 
-2. **推送（Push）**：服务器可以在新数据可用时立即将其推送给用户。为了有效管理这一点，用户必须与服务器保持 [长轮询](/https://en.wikipedia.org/wiki/Push_technology#Long_polling) 请求以接收更新。该方法可能存在的问题是，对于关注了很多人或有数百万粉丝的名人用户，服务器必须非常频繁地推送更新。
+2. **推送（Push）**：服务器可以在新数据可用时立即将其推送给用户。为了有效管理这一点，用户必须与服务器保持 [长轮询](https://en.wikipedia.org/wiki/Push_technology#Long_polling) 请求以接收更新。该方法可能存在的问题是，对于关注了很多人或有数百万粉丝的名人用户，服务器必须非常频繁地推送更新。
 
 3. **混合（Hybrid）**：我们可以采取混合方法。我们可以将关注人数较多的用户转移到基于拉取的模型，仅向那些只有几百（或几千）关注者的用户推送数据。另一种方法是，服务器以不超过某一频率向所有用户推送更新，让有很多关注者/更新的用户定期拉取数据。
 
