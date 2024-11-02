@@ -77,7 +77,7 @@ export default defineConfig({
             { "text": "设计 Pastebin", "link": "/grokking/chapter-3" },
             { "text": "设计 Instagram", "link": "/grokking/chapter-4" },
             { "text": "设计 Dropbox", "link": "/grokking/chapter-5" },
-            // { "text": "设计 Facebook Messenger", "link": "/grokking/chapter-6" },
+            { "text": "设计 Facebook Messenger", "link": "/grokking/chapter-6" },
             // { "text": "设计 Twitter", "link": "/grokking/chapter-7" },
             // { "text": "设计 YouTube 或 Netflix", "link": "/grokking/chapter-8" },
             // { "text": "设计自动完成建议", "link": "/grokking/chapter-9" },
