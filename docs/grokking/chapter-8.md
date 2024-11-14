@@ -46,3 +46,52 @@ YouTube是全球最受欢迎的视频共享网站之一。用户可以在平台�
 `500小时 * 60分钟 * 10MB ≈ 300GB/分钟（5GB/秒）`
 
 假设上传与观看的比率为1:200，我们每秒需要1TB的输出带宽。
+
+## 4. 系统API
+
+我们可以使用SOAP或REST API来暴露服务的功能。以下是上传和搜索视频API的定义：
+
+```
+uploadVideo(api_dev_key, video_title, video_description, tags[], category_id, default_language, recording_details, video_contents)
+```
+
+**上传API参数**：
+- `api_dev_key` (string)：已注册账号的API开发密钥，用于限制用户访问频率，基于其分配的配额。
+- `video_title` (string)：视频标题。
+- `video_description` (string)：视频的可选描述。
+- `tags` (string[])：视频的可选标签。
+- `category_id` (string)：视频类别，例如电影、歌曲、人物等。
+- `default_language` (string)：视频语言，例如英语、普通话、印地语等。
+- `recording_details` (string)：视频录制的地点。
+- `video_contents` (stream)：要上传的视频内容。
+
+**返回**： (string)  
+成功上传会返回HTTP 202（请求已接受），视频编码完成后，系统通过电子邮件通知用户，并提供访问视频的链接。我们还可以提供可查询的API，让用户了解其上传视频的当前状态。
+
+```
+searchVideo(api_dev_key, search_query, user_location, maximum_videos_to_return, page_token)
+```
+
+**搜索API参数**：
+- `api_dev_key` (string)：已注册账号的API开发密钥。
+- `search_query` (string)：包含搜索词的字符串。
+- `user_location` (string)：执行搜索的用户位置（可选）。
+- `maximum_videos_to_return` (number)：单次请求返回的最大结果数量。
+- `page_token` (string)：用于指定应返回结果集中的某一页面的标记。
+
+**返回**： (JSON)  
+返回包含与搜索查询匹配的视频资源列表的JSON。每个视频资源包括视频标题、缩略图、视频创建日期和观看次数。
+
+```
+streamVideo(api_dev_key, video_id, offset, codec, resolution)
+```
+
+**流媒体API参数**：
+- `api_dev_key` (string)：已注册账号的API开发密钥。
+- `video_id` (string)：视频的标识字符串。
+- `offset` (number)：允许从视频的任何偏移位置流式播放，此偏移量为从视频开始的秒数。如果支持在多个设备上播放/暂停视频，则需要在服务器上存储该偏移量，使用户在任意设备上从上次观看的时间点继续播放视频。
+- `codec` (string) & `resolution` (string)：客户端API需传递编解码器和分辨率信息，以支持多个设备的播放/暂停功能。例如，当用户在电视的Netflix应用上观看视频时暂停，再切换到手机上的Netflix应用继续观看，此时需要编解码器和分辨率信息，因为不同设备的分辨率和使用的编解码器不同。
+
+**返回**： (STREAM)  
+从指定的偏移位置开始的视频媒体流（视频片段）。
+
