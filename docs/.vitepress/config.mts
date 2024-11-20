@@ -80,7 +80,7 @@ export default defineConfig({
             { "text": "设计 Facebook Messenger", "link": "/grokking/chapter-6" },
             { "text": "设计 Twitter", "link": "/grokking/chapter-7" },
             { "text": "设计 YouTube 或 Netflix", "link": "/grokking/chapter-8" },
-            // { "text": "设计自动完成建议", "link": "/grokking/chapter-9" },
+            { "text": "设计自动完成建议", "link": "/grokking/chapter-9" },
             // { "text": "设计 API 速率限制器", "link": "/grokking/chapter-10" },
             // { "text": "设计 Twitter 搜索", "link": "/grokking/chapter-11" },
             // { "text": "设计网络爬虫", "link": "/grokking/chapter-12" },
