@@ -83,7 +83,7 @@ export default defineConfig({
             { "text": "设计自动完成建议", "link": "/grokking/chapter-9" },
             { "text": "设计 API 速率限制器", "link": "/grokking/chapter-10" },
             { "text": "设计 Twitter 搜索", "link": "/grokking/chapter-11" },
-            // { "text": "设计网络爬虫", "link": "/grokking/chapter-12" },
+            { "text": "设计网络爬虫", "link": "/grokking/chapter-12" },
             // { "text": "设计 Facebook 的新闻订阅", "link": "/grokking/chapter-13" },
             // { "text": "设计 Yelp 或附近的朋友", "link": "/grokking/chapter-14" },
             // { "text": "设计 Uber 后端", "link": "/grokking/chapter-15" },
