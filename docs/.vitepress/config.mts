@@ -88,7 +88,7 @@ export default defineConfig({
             { "text": "设计 Yelp 或附近的朋友", "link": "/grokking/chapter-14" },
             { "text": "设计 Uber 后端", "link": "/grokking/chapter-15" },
             { "text": "设计 Ticketmaster", "link": "/grokking/chapter-16" },
-            // { "text": "其他资源", "link": "/grokking/chapter-17" },
+            { "text": "其他资源", "link": "/grokking/chapter-17" },
           ]
         },
         // {
