@@ -98,7 +98,7 @@ export default defineConfig({
             { "text": "分布式系统的关键特性", "link": "/grokking/chapter-18" },
             { "text": "负载均衡", "link": "/grokking/chapter-19" },
             { "text": "缓存", "link": "/grokking/chapter-20" },
-            // { "text": "分片或数据分区", "link": "/grokking/chapter-21" },
+            { "text": "分片或数据分区", "link": "/grokking/chapter-21" },
             // { "text": "索引", "link": "/grokking/chapter-22" },
             // { "text": "代理", "link": "/grokking/chapter-23" },
             // { "text": "冗余与复制", "link": "/grokking/chapter-24" },
