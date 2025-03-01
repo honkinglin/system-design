@@ -100,7 +100,7 @@ export default defineConfig({
             { "text": "缓存", "link": "/grokking/chapter-20" },
             { "text": "分片或数据分区", "link": "/grokking/chapter-21" },
             { "text": "索引", "link": "/grokking/chapter-22" },
-            // { "text": "代理", "link": "/grokking/chapter-23" },
+            { "text": "代理", "link": "/grokking/chapter-23" },
             // { "text": "冗余与复制", "link": "/grokking/chapter-24" },
             // { "text": "SQL 与 NoSQL", "link": "/grokking/chapter-25" },
             // { "text": "CAP 定理", "link": "/grokking/chapter-26" },
