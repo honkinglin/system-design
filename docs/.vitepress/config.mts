@@ -104,7 +104,7 @@ export default defineConfig({
             { "text": "冗余与复制", "link": "/grokking/chapter-24" },
             { "text": "SQL 与 NoSQL", "link": "/grokking/chapter-25" },
             { "text": "CAP 定理", "link": "/grokking/chapter-26" },
-            // { "text": "一致性哈希", "link": "/grokking/chapter-27" },
+            { "text": "一致性哈希", "link": "/grokking/chapter-27" },
             // { "text": "长轮询 vs WebSockets vs 服务器发送事件", "link": "/grokking/chapter-28" }
           ]
         }
